@@ -663,14 +663,14 @@ html[dir="rtl"] .dropdown-menu {
   font-size: 0.75rem;
   font-weight: bold;
   color: #ffffff;
-  background-color: #007bff;
+  background-color: #EFBF04;
   border-radius: 0.25rem;
   text-transform: uppercase;
   transition: all 0.3s ease;
 }
 
 .go-pro-link:hover .go-pro-badge {
-  background-color: #0056b3;
+  background-color: #eee836ff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
