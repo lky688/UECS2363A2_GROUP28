@@ -22,7 +22,7 @@ jobs:
         java-version: '22'
 
     - name: Build with Gradle
-      run: gradlew.bat clean build
+      run: ./gradlew clean build
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
@@ -31,7 +31,7 @@ jobs:
         path: app/core/build/libs/**
 
     - name: Run Unit Test
-      run: gradlew.bat test
+      run: ./gradlew test
 
     - name: Upload Test Report
       uses: actions/upload-artifact@v4
@@ -40,7 +40,7 @@ jobs:
         path: app/core/build/reports/tests/**
 
     - name: Generate Code Coverage Report
-      run: gradlew.bat jacocoTestReport
+      run: ./gradlew jacocoTestReport
 
     - name: Upload code coverage report
       uses: actions/upload-artifact@v4
