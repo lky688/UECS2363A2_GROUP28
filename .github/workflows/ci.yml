@@ -21,7 +21,13 @@ jobs:
         distribution: 'temurin'
         java-version: '22'
 
-    - name: Build with Gradle
+    - name: Accept Gradle Terms to Publish Build Report
+      run: |
+        mkdir -p ~/.gradle
+        echo "gradle.enterprise.url=https://ge.gradle.com" >> ~/.gradle/gradle-enterprise.gradle
+        echo "gradle.enterprise.agreeToTerms=true" >> ~/.gradle/gradle-enterprise.gradle
+
+    - name: Build with Gradle and Publish Scan
       run: ./gradlew build --scan
 
     - name: Upload Build Artifacts
@@ -53,11 +59,12 @@ jobs:
 
     - name: Run Docker Image for Verification
       run: |
-        docker run --rm -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/stirling-pdf:latest
-        sleep 10
+        docker run -d --name stirling-test -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/stirling-pdf:latest
+        sleep 15
         curl -f http://localhost:8080 || (echo "Container failed to start" && exit 1)
+        docker rm -f stirling-test
 
-    - name: Log in to Docker Hub
+    - name: Log In to Docker Hub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
