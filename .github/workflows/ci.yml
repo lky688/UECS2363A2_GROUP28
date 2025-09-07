@@ -22,6 +22,8 @@ jobs:
         java-version: '22'
 
     - name: Build with Gradle & Publish Build Report
+      env:
+        GRADLE_ENTERPRISE_AGREEMENT_VERSION: "yes"
       run: ./gradlew build --scan
 
     - name: Upload Build Artifacts
