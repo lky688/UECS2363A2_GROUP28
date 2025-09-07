@@ -21,6 +21,12 @@ jobs:
         distribution: 'temurin'
         java-version: '22'
 
+    - name: Configure Gradle for Build Scans
+      run: |
+        # Add both system property and regular property to be safe
+        echo "systemProp.gradle.enterprise.agreement.version=yes" >> gradle.properties
+        echo "gradle.enterprise.agreement.version=yes" >> gradle.properties
+        
     - name: Build with Gradle & Publish Build Report
       env:
         GRADLE_ENTERPRISE_AGREEMENT_VERSION: "yes"
