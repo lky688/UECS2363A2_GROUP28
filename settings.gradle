@@ -5,6 +5,7 @@ plugins {
     id 'com.gradle.enterprise' version '3.15'
 }
 
+// added this to agree to gradle terms so that build report can be published in CI workflows
 gradleEnterprise {
     buildScan {
         termsOfServiceUrl = 'https://gradle.com/terms-of-service'
